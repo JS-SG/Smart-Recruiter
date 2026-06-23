@@ -1,0 +1,17 @@
+experience_score: 0.10
+retrieval_score: 0.25
+production_ml_score: 0.15
+evaluation_score: 0.15
+product_company_score: 0.10
+python_score: 0.10
+behavior_score: 0.05
+market_demand_score: 0.05
+external_validation_score: 0.03
+github_score: 0.01
+location_score: 0.01
+
+penalties:
+  honeypot: 15
+  consulting_only: 10
+  research_only: 8
+  inactive_candidate: 5
