@@ -1,6 +1,0 @@
-python validate_submission.py \
-outputs/submission.csv
-
-python rank.py \
---candidates data/candidates.jsonl \
---out outputs/submission.csv

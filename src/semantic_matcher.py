@@ -8,7 +8,7 @@ class SemanticMatcher:
     def __init__(self):
         self.jd_embedding = None
         self.model = SentenceTransformer(
-            "all-MiniLM-L6-v2"
+            "./models/all-MiniLM-L6-v2"
         )
 
     def encode_jd(
