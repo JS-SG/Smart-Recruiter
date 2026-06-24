@@ -19,6 +19,11 @@ def main():
     )
 
     parser.add_argument(
+        "--jd",
+        required=True
+    )
+
+    parser.add_argument(
         "--out",
         required=True
     )
@@ -29,7 +34,7 @@ def main():
         "Starting ranking..."
     )
 
-    engine = RankingEngine()
+    engine = RankingEngine(args.jd)
 
     results = (
         engine.process_file(

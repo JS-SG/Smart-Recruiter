@@ -76,6 +76,11 @@ class ReasoningGenerator:
             set(matched_skills)
         )
 
+        semantic_score = features.get(
+            "semantic_score",
+            0
+        )
+
         primary_skills = list(
             dict.fromkeys(
                 matched_skills
@@ -89,6 +94,7 @@ class ReasoningGenerator:
                 f"{years:.1f} yrs; "
                 f"{skill_count} AI core skills "
                 f"({', '.join(primary_skills)}); "
+                f"semantic fit {semantic_score:.2f}; "
                 f"response rate "
                 f"{recruiter_rate:.2f}"
             )
@@ -97,6 +103,7 @@ class ReasoningGenerator:
             f"{role} with "
             f"{years:.1f} yrs; "
             f"{skill_count} AI core skills; "
+            f"semantic fit {semantic_score:.2f}; "
             f"response rate "
             f"{recruiter_rate:.2f}"
         )

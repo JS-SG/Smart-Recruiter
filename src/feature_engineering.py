@@ -110,7 +110,7 @@ class FeatureEngineer:
         "cognizant"
     }
 
-    def build_features(self, candidate):
+    def build_features(self, candidate, jd_requirements, semantic_score):
 
         features = {}
 
@@ -124,6 +124,87 @@ class FeatureEngineer:
         features["retrieval_score"] = self._retrieval_score(
             skills,
             history
+        )
+
+        features[
+            "semantic_score"
+        ] = semantic_score
+
+        candidate_text_parts = []
+
+        profile = candidate.get(
+            "profile",
+            {}
+        )
+
+        candidate_text_parts.append(
+            profile.get(
+                "headline",
+                ""
+            )
+        )
+
+        candidate_text_parts.append(
+            profile.get(
+                "summary",
+                ""
+            )
+        )
+
+        for skill in candidate.get(
+            "skills",
+            []
+        ):
+            candidate_text_parts.append(
+                skill.get(
+                    "name",
+                    ""
+                )
+            )
+
+        for job in candidate.get(
+            "career_history",
+            []
+        ):
+            candidate_text_parts.append(
+                job.get(
+                    "title",
+                    ""
+                )
+            )
+
+            candidate_text_parts.append(
+                job.get(
+                    "description",
+                    ""
+                )
+            )
+
+        candidate_text = " ".join(
+            candidate_text_parts
+        ).lower()
+
+        required_keywords = (
+            jd_requirements[
+                "required_keywords"
+            ]
+        )
+
+        matches = 0
+
+        for kw in required_keywords:
+
+            if kw in candidate_text:
+                matches += 1
+
+        features[
+            "jd_match_score"
+        ] = (
+            matches /
+            max(
+                len(required_keywords),
+                1
+            )
         )
 
         features["production_ml_score"] = self._production_ml_score(

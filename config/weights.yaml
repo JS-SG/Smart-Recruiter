@@ -1,4 +1,5 @@
 experience_score: 0.10
+semantic_score: 0.20
 retrieval_score: 0.25
 production_ml_score: 0.15
 evaluation_score: 0.15

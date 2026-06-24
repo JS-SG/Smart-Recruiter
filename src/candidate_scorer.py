@@ -17,6 +17,26 @@ class CandidateScorer:
         score = 0
 
         score += (
+            features.get(
+                "semantic_score",
+                0
+            )   
+            *
+            self.weights.get(
+                "semantic_score",
+                0
+            )
+        )
+
+        score += (
+            features.get(
+                "jd_match_score",
+                0
+            )
+            * 0.10
+        )
+
+        score += (
             features["experience_score"]
             * self.weights["experience_score"]
         )
